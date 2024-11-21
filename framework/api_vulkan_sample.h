@@ -410,8 +410,8 @@ class ApiVulkanSample : public vkb::VulkanSampleC
 
   public:
 	bool     prepared = false;
-	uint32_t width    = 1280;
-	uint32_t height   = 720;
+	uint32_t width    = 640;
+	uint32_t height   = 480;
 
 	VkClearColorValue default_clear_color = {{0.002f, 0.002f, 0.002f, 1.0f}};
 

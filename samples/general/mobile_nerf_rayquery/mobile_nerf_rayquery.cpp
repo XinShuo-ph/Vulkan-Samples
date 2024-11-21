@@ -352,7 +352,7 @@ void MobileNerfRayQuery::read_json_map()
 	// Rotation mode
 	do_rotation = raw_asset_map["rotation"].get<bool>();
 
-	// Read view port size. Use default setting (1280x720) if size is 0.
+	// Read view port size. Use default setting (640x480) if size is 0.
 	view_port_width  = raw_asset_map["width"].get<int>();
 	view_port_height = raw_asset_map["height"].get<int>();
 

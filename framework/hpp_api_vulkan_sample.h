@@ -367,7 +367,7 @@ class HPPApiVulkanSample : public vkb::VulkanSampleCpp
 
   public:
 	bool         prepared = false;
-	vk::Extent2D extent{1280, 720};
+	vk::Extent2D extent{640, 480};
 
 	vk::ClearColorValue default_clear_color = std::array<float, 4>({{0.002f, 0.002f, 0.002f, 1.0f}});
 

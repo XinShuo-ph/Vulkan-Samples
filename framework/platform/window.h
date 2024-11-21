@@ -72,7 +72,7 @@ class Window
 		Mode        mode      = Mode::Default;
 		bool        resizable = true;
 		Vsync       vsync     = Vsync::Default;
-		Extent      extent    = {1280, 720};
+		Extent      extent    = {640, 480};
 	};
 
 	/**

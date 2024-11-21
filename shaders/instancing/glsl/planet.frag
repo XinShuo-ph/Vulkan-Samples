@@ -26,13 +26,47 @@ layout (location = 4) in vec3 inLightVec;
 
 layout (location = 0) out vec4 outFragColor;
 
+// void main() 
+// {
+// 	vec4 color = texture(samplerColorMap, inUV) * vec4(inColor, 1.0) * 1.5;
+// 	vec3 N = normalize(inNormal);
+// 	vec3 L = normalize(inLightVec);
+// 	vec3 V = normalize(inViewVec);
+// 	vec3 R = reflect(-L, N);
+// 	vec3 diffuse = max(dot(N, L), 0.0) * inColor;
+// 	vec3 specular = pow(max(dot(R, V), 0.0), 4.0) * vec3(0.5) * color.r;
+// 	outFragColor = vec4(diffuse * color.rgb + specular, 1.0);		
+// }
+
+
 void main() 
 {
-	vec4 color = texture(samplerColorMap, inUV) * vec4(inColor, 1.0) * 1.5;
-	vec3 N = normalize(inNormal);
-	vec3 L = normalize(inLightVec);
-	vec3 V = normalize(inViewVec);
-	vec3 R = reflect(-L, N);
+    // Calculate normalized device coordinates
+    vec2 fragCoord = gl_FragCoord.xy;
+    vec2 resolution = vec2(640.0, 480.0); // Replace with actual resolution, we can also read res from code, but that needs more work
+    vec2 center = resolution * 0.5;
+    float distance = length(fragCoord - center);
+    float maxDistance = length(center);
+	int skiprate1 = 4; // skip every 4th pixel
+	int skiprate2 = 2; 
+
+    // If distance is greater than 50% of max, apply 4x4 pixel shading
+    if (distance > 0.5 * maxDistance){
+        if (int(floor(fragCoord.x)) % skiprate1 != 0 || int(floor(fragCoord.y)) % skiprate1 != 0) {
+            discard;
+        }
+    }
+    if (distance > 0.25 * maxDistance){
+        if (int(floor(fragCoord.x)) % skiprate2 != 0 || int(floor(fragCoord.y)) % skiprate2 != 0) {
+            discard;
+        }
+    }
+
+    vec4 color = texture(samplerColorMap, inUV) * vec4(inColor, 1.0) * 1.5;
+    vec3 N = normalize(inNormal);
+    vec3 L = normalize(inLightVec);
+    vec3 V = normalize(inViewVec);
+    vec3 R = reflect(-L, N);
 	vec3 diffuse = max(dot(N, L), 0.0) * inColor;
 	vec3 specular = pow(max(dot(R, V), 0.0), 4.0) * vec3(0.5) * color.r;
 	outFragColor = vec4(diffuse * color.rgb + specular, 1.0);		

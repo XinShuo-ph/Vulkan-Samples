@@ -1,0 +1,87 @@
+[info] Logger initialized
+[info] Initializing Vulkan sample
+[info] Vulkan debug utils enabled (VK_EXT_debug_utils)
+[info] Extension VK_KHR_get_physical_device_properties2 found, enabling it
+[info] Extension VK_EXT_debug_utils found, enabling it
+[info] Extension VK_KHR_xcb_surface found, enabling it
+[info] Enabled Validation Layers:
+[info] Found GPU: llvmpipe (LLVM 15.0.7, 256 bits)
+[warning] Couldn't find a discrete physical device, picking default GPU
+[info] Selected GPU: llvmpipe (LLVM 15.0.7, 256 bits)
+[info] Dedicated Allocation enabled
+[info] Device supports the following requested extensions:
+[info]   	VK_KHR_get_memory_requirements2
+[info]   	VK_KHR_dedicated_allocation
+[info]   	VK_KHR_swapchain
+[info] Surface supports the following surface formats:
+[info]   	B8G8R8A8Srgb, SrgbNonlinear
+[info]   	B8G8R8A8Unorm, SrgbNonlinear
+[info] Surface supports the following present modes:
+[info]   	Immediate
+[info]   	Mailbox
+[info]   	Fifo
+[info]   	FifoRelaxed
+[warning] (HPPSwapchain) Image extent (0, 0) not supported. Selecting (1024, 716).
+[warning] (HPPSwapchain) Surface format (Undefined, SrgbNonlinear) not supported. Selecting (B8G8R8A8Srgb, SrgbNonlinear).
+[info] (HPPSwapchain) Image usage flags: TransferSrc ColorAttachment 
+[info] (HPPSwapchain) Present mode selected: Mailbox
+[info] Depth format selected: VK_FORMAT_D32_SFLOAT
+[info] Depth format selected: VK_FORMAT_D32_SFLOAT
+[info] Depth format selected: VK_FORMAT_D32_SFLOAT
+[info] Depth format selected: VK_FORMAT_D32_SFLOAT
+[info] Depth format selected: VK_FORMAT_D32_SFLOAT
+[warning] Fragment Cycles : not available
+[warning] External Read Bytes : not available
+[warning] External Write Bytes : not available
+[info] glTF file contains extension: KHR_lights_punctual
+[warning] ASTC not supported: decoding lion.ktx
+[warning] ASTC not supported: decoding sponza_thorn_diff.ktx
+[warning] ASTC not supported: decoding chain_texture.ktx
+[warning] ASTC not supported: decoding sponza_flagpole_diff.ktx
+[warning] ASTC not supported: decoding background.ktx
+[warning] ASTC not supported: decoding spnza_bricks_a_diff.ktx
+[warning] ASTC not supported: decoding sponza_column_b_diff.ktx
+[warning] ASTC not supported: decoding sponza_floor_a_diff.ktx
+[warning] ASTC not supported: decoding sponza_column_a_diff.ktx
+[warning] ASTC not supported: decoding vase_plant.ktx
+[warning] ASTC not supported: decoding spnza_bricks_a_diff.ktx
+[warning] ASTC not supported: decoding sponza_ceiling_a_diff.ktx
+[warning] ASTC not supported: decoding sponza_curtain_diff.ktx
+[warning] ASTC not supported: decoding sponza_fabric_green_diff.ktx
+[warning] ASTC not supported: decoding sponza_fabric_blue_diff.ktx
+[warning] ASTC not supported: decoding sponza_curtain_blue_diff.ktx
+[warning] ASTC not supported: decoding sponza_curtain_green_diff.ktx
+[warning] ASTC not supported: decoding sponza_arch_diff.ktx
+[warning] ASTC not supported: decoding sponza_fabric_diff.ktx
+[warning] ASTC not supported: decoding sponza_roof_diff.ktx
+[warning] ASTC not supported: decoding sponza_details_diff.ktx
+[warning] ASTC not supported: decoding sponza_column_c_diff.ktx
+[warning] ASTC not supported: decoding vase_round.ktx
+[warning] ASTC not supported: decoding vase_dif.ktx
+[warning] ASTC not supported: decoding vase_hanging.ktx
+[info] Loaded gltf image #3 (sponza_thorn_diff.ktx)
+[info] Loaded gltf image #17 (chain_texture.ktx)
+[info] Loaded gltf image #8 (sponza_arch_diff.ktx)
+[info] Loaded gltf image #21 (sponza_fabric_green_diff.ktx)
+[info] Loaded gltf image #11 (sponza_floor_a_diff.ktx)
+[info] Loaded gltf image #6 (sponza_ceiling_a_diff.ktx)
+[info] Loaded gltf image #1 (lion.ktx)
+[info] Loaded gltf image #10 (sponza_details_diff.ktx)
+[info] Loaded gltf image #9 (sponza_column_c_diff.ktx)
+[info] Loaded gltf image #4 (vase_plant.ktx)
+[info] Loaded gltf image #0 (sponza_flagpole_diff.ktx)
+[info] Loaded gltf image #7 (sponza_column_a_diff.ktx)
+[info] Loaded gltf image #22 (sponza_fabric_blue_diff.ktx)
+[info] Loaded gltf image #23 (sponza_fabric_diff.ktx)
+[info] Loaded gltf image #14 (spnza_bricks_a_diff.ktx)
+[info] Loaded gltf image #2 (background.ktx)
+[info] Loaded gltf image #12 (sponza_column_b_diff.ktx)
+[info] Loaded gltf image #24 (sponza_roof_diff.ktx)
+[info] Loaded gltf image #5 (spnza_bricks_a_diff.ktx)
+[info] Loaded gltf image #13 (vase_dif.ktx)
+[info] Loaded gltf image #16 (vase_round.ktx)
+[info] Loaded gltf image #15 (vase_hanging.ktx)
+[info] Loaded gltf image #18 (sponza_curtain_blue_diff.ktx)
+[info] Loaded gltf image #19 (sponza_curtain_diff.ktx)
+[info] Loaded gltf image #20 (sponza_curtain_green_diff.ktx)
+[info] Time spent loading images: 0.300006 seconds across 64 threads.
