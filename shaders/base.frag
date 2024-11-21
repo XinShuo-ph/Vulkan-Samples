@@ -62,6 +62,30 @@ layout(constant_id = 2) const uint SPOT_LIGHT_COUNT        = 0U;
 
 void main(void)
 {
+
+	// Calculate normalized device coordinates
+    vec2 fragCoord = gl_FragCoord.xy;
+    vec2 resolution = vec2(640.0, 480.0); // Replace with actual resolution, we can also read res from code, but that needs more work
+    vec2 center = resolution * 0.5;
+    float distance = length(fragCoord - center);
+    float maxDistance = length(center);
+	int skiprate1 = 4; // skip every 4th pixel
+	int skiprate2 = 2; 
+
+    // If distance is greater than 50% of max, apply 4x4 pixel shading
+    if (distance > 0.5 * maxDistance){
+        if (int(floor(fragCoord.x)) % skiprate1 != 0 || int(floor(fragCoord.y)) % skiprate1 != 0) {
+            discard;
+        }
+    }
+    if (distance > 0.25 * maxDistance){
+        if (int(floor(fragCoord.x)) % skiprate2 != 0 || int(floor(fragCoord.y)) % skiprate2 != 0) {
+            discard;
+        }
+    }
+
+
+
 	vec3 normal = normalize(in_normal);
 
 	vec3 light_contribution = vec3(0.0);
