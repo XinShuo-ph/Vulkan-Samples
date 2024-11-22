@@ -42,12 +42,14 @@ layout (location = 0) out vec4 outFragColor;
 
 void main() 
 {
+    //discard;
     // Calculate normalized device coordinates
     vec2 fragCoord = gl_FragCoord.xy;
     vec2 resolution = vec2(640.0, 480.0); // Replace with actual resolution, we can also read res from code, but that needs more work
     vec2 center = resolution * 0.5;
     float distance = length(fragCoord - center);
-    float maxDistance = length(center);
+    //float maxDistance = length(center);
+    float maxDistance = 1e5;
 	int skiprate1 = 4; // skip every 4th pixel
 	int skiprate2 = 2; 
 

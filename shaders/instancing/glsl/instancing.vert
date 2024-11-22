@@ -46,6 +46,7 @@ layout (location = 4) out vec3 outLightVec;
 
 void main() 
 {
+
 	outColor = vec3(1.0);
 	outUV = vec3(inUV, instanceTexIndex);
 
@@ -88,11 +89,57 @@ void main()
 	vec4 locPos = vec4(inPos.xyz * rotMat, 1.0);
 	vec4 pos = vec4((locPos.xyz * instanceScale) + instancePos, 1.0);
 
-	gl_Position = ubo.projection * ubo.modelview * gRotMat * pos;
-	outNormal = mat3(ubo.modelview * gRotMat) * inverse(rotMat) * inNormal;
+	// from global position to the pixel position, should be same as what's in gl_FragCoord
+	
+	vec2 resolution = vec2(640.0, 480.0); // Replace with actual resolution, we can also read res from code, but that needs more work
+    vec2 center = resolution * 0.5;
+	vec4 my_gl_Position = ubo.projection * ubo.modelview * gRotMat * vec4(instancePos, 1.0);
+    // Calculate pixel position
+    vec2 my_outFragCoord = (my_gl_Position.xy / my_gl_Position.w) * 0.5 + 0.5;
+    my_outFragCoord.x *= float(resolution.x);
+    my_outFragCoord.y *= float(resolution.y);
+    float distance = length(my_outFragCoord - center);
+    // float maxDistance = length(center);
+    float maxDistance = 1e5;
+	
+	// in this example the instances are large in number (8000+), so we can try skipping some of the instances, according to there distance from the center
+	// We can do this in a similar way as we did for the fragments. But we should be careful about the skiprate, we need to decide which instances to skip and
+	// skip the entire instance 
+	float tile_size = 10.0; 
+	
 
-	pos = ubo.modelview * vec4(inPos.xyz + instancePos, 1.0);
-	vec3 lPos = mat3(ubo.modelview) * ubo.lightPos.xyz;
-	outLightVec = lPos - pos.xyz;
-	outViewVec = -pos.xyz;		
+	int skiprate1 = 4*4; // skip every 4th tile
+	int skiprate2 = 2*2; 
+
+	int creterion = int(instanceScale*1e4);
+
+	
+	// if (distance > 0.5 * maxDistance){
+    //     // if (int(floor(my_outFragCoord.x/tile_size)) % skiprate1 != 0 || int(floor(my_outFragCoord.y/tile_size)) % skiprate1 != 0) {
+	// 	// instead of pixel positions, try setting the creterion as "random", but fixed for each instance, e.g. 4th digit of distance
+	// 	// if (int(distance*1e4) % skiprate1 != 0) {
+	// 	// distance changes in time, how about scale?
+	// 	if ( creterion % (skiprate1) != 0) {
+	// 	// or skip according to TexIndex (is this unique for each instance?)
+	// 	// if (instanceTexIndex % skiprate1 != 0) {
+
+
+	if (distance > 0.5 * maxDistance && creterion % (skiprate1) != 0) {
+			gl_Position = vec4(2.0, 0.0, 0.0, 0.0); // skip instance by putting it outside the screen
+			return; 
+    }
+    if (distance > 0.25 * maxDistance && creterion % (skiprate2) != 0) {
+		// if (instanceTexIndex % skiprate1 != 0) {
+            gl_Position = vec4(2.0, 0.0, 0.0, 0.0); // skip instance by putting it outside the screen
+			return; 
+    }
+	{
+		gl_Position = ubo.projection * ubo.modelview * gRotMat * pos;
+		outNormal = mat3(ubo.modelview * gRotMat) * inverse(rotMat) * inNormal;
+
+		pos = ubo.modelview * vec4(inPos.xyz + instancePos, 1.0);
+		vec3 lPos = mat3(ubo.modelview) * ubo.lightPos.xyz;
+		outLightVec = lPos - pos.xyz;
+		outViewVec = -pos.xyz;		
+	}
 }
